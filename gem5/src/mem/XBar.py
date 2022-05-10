@@ -170,6 +170,25 @@ class L2XBar(CoherentXBar):
 # One of the key coherent crossbar instances is the system
 # interconnect, tying together the CPU clusters, GPUs, and any I/O
 # coherent requestors, and DRAM controllers.
+
+#Adding L3 Cache
+class L3XBar(CoherentXBar):
+    width = 32
+    frontend_latency = 1
+    forward_latency = 0
+    response_latency = 1
+    snoop_response_latency = 1
+    snoop_filter = SnoopFilter(lookup_latency = 0)
+
+#Adding L4 Cache
+class L4XBar(CoherentXBar):
+    width = 32
+    frontend_latency = 1
+    forward_latency = 0
+    response_latency = 1
+    snoop_response_latency = 1
+    snoop_filter = SnoopFilter(lookup_latency = 0)
+
 class SystemXBar(CoherentXBar):
     # 128-bit crossbar by default
     width = 16
