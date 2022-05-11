@@ -131,7 +131,7 @@ class L2Cache(Cache):
         self.mem_side = bus.cpu_side_ports
 
 class L3Cache(Cache):
-    size = '4096kB'
+    size = '256kB'
     assoc = 8
     tag_latency = 37
     data_latency = 37
@@ -152,8 +152,8 @@ class L3Cache(Cache):
         self.mem_side = bus.cpu_side_ports
 
 class L4Cache(Cache):
-    size = '8192kB'
-    assoc = 16
+    size = '512kB'
+    assoc = 8
     tag_latency = 27
     data_latency = 27
     response_latency = 27
@@ -170,4 +170,4 @@ class L4Cache(Cache):
         self.cpu_side = bus.mem_side_ports
 
     def connectMemSideBus(self, bus):
-        self.mem_side = bus.cpu_side_ports
+        self.mem_side= bus.cpu_side_ports

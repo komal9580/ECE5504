@@ -76,26 +76,28 @@ system.cpu.dcache.connectBus(system.l2bus)
 system.l2cache = L2Cache()
 system.l2cache.connectCPUSideBus(system.l2bus)
 
+x = 1
+
+if(x):
+
 #Create a memory bus, for L3 cache
-system.l3bus = L3XBar()
+    system.l3bus = L3XBar()
 
 #Hook up the L2 cache to the L3 cache bus
-system.l2cache.connectMemSideBus(system.l3bus)
+    system.l2cache.connectMemSideBus(system.l3bus)
 
-#Create an L3 cache and connect it to the l3 bus
-system.l3cache = L3Cache()
-system.l3cache.connectCPUSideBus(system.l3bus)
-
-#Hook up the L3 cache to the L4 cache bus
-system.l3cache.connectMemSideBus(system.l4bus)
+#Create an L3 acche and connect it to the l3 bus
+    system.l3cache = L3Cache()
+    system.l3cache.connectCPUSideBus(system.l3bus)
 
 # Create a memory bus
 system.membus = SystemXBar()
 
-# Hook the CPU ports up to the membus
-#system.cpu.icache_port = system.membus.cpu_side_ports
-#system.cpu.dcache_port = system.membus.cpu_side_ports
-
+if(x):
+# Connect the L3 cache to the membus
+    system.l3cache.connectMemSideBus(system.membus)
+else:
+    system.l2cache.connectMemSideBus(system.membus)
 # create the interrupt controller for the CPU and connect to the membus
 system.cpu.createInterruptController()
 
@@ -108,7 +110,7 @@ if m5.defines.buildEnv['TARGET_ISA'] == "x86":
 
 # Create a DDR3 memory controller and connect it to the membus
 system.mem_ctrl = MemCtrl()
-system.mem_ctrl.dram =  DDR3_1600_8x8()
+system.mem_ctrl.dram = HMC_2500_1x32()
 system.mem_ctrl.dram.range = system.mem_ranges[0]
 system.mem_ctrl.port = system.membus.mem_side_ports
 
@@ -124,9 +126,7 @@ thispath = os.path.dirname(os.path.realpath(__file__))
 print (thispath)
 
 #binary = os.path.join(thispath, '../../tests/test-progs/matrix_multiply.out')
-
 binary = os.path.join(thispath, 'radix_sort.out')
-
 print (binary)
 
 system.workload = SEWorkload.init_compatible(binary)
