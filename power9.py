@@ -126,7 +126,7 @@ thispath = os.path.dirname(os.path.realpath(__file__))
 print (thispath)
 
 #binary = os.path.join(thispath, '../../tests/test-progs/matrix_multiply.out')
-binary = os.path.join(thispath, 'radix_sort.out')
+binary = os.path.join(thispath, 'radix_sort_large.out')
 print (binary)
 
 system.workload = SEWorkload.init_compatible(binary)

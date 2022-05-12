@@ -46,7 +46,7 @@ from common import SimpleOpts
 class L1Cache(Cache):
     """Simple L1 Cache with default values"""
 
-    assoc = 8
+    assoc = 16
     tag_latency = 4
     data_latency = 4
     response_latency = 4
@@ -109,7 +109,7 @@ class L2Cache(Cache):
 
     # Default parameters
     size = '16kB'
-    assoc = 8
+    assoc = 16
     tag_latency = 16
     data_latency = 16
     response_latency = 16
@@ -131,8 +131,8 @@ class L2Cache(Cache):
         self.mem_side = bus.cpu_side_ports
 
 class L3Cache(Cache):
-    size = '256kB'
-    assoc = 8
+    size = '8192kB'
+    assoc = 16
     tag_latency = 37
     data_latency = 37
     response_latency = 37
@@ -152,8 +152,8 @@ class L3Cache(Cache):
         self.mem_side = bus.cpu_side_ports
 
 class L4Cache(Cache):
-    size = '512kB'
-    assoc = 8
+    size = '16384kB'
+    assoc = 16
     tag_latency = 27
     data_latency = 27
     response_latency = 27
